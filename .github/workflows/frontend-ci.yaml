@@ -1,7 +1,7 @@
 name: Frontend Continuous Integration
 
 on:
-  push_request:
+  push:
     branches:
       - main
 
