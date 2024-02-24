@@ -19,13 +19,15 @@ jobs:
       - name: Cache dependencies
         uses: actions/cache@v2
         with:
-          path: frontend/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('frontend/package-lock.json') }}
+          path: ./frontend/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
       - name: Install dependencies
+        working-directory: ./frontend
         run: npm install
       - name: Run lint
+        working-directory: ./frontend
         run: npm run lint
 
   test:
@@ -52,7 +54,7 @@ jobs:
             pwd
             npm install
       - name: Run tests
-        working-directory: frontend
+        
         run: npm run test
 
   build:
